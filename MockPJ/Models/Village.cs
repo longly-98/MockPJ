@@ -6,5 +6,6 @@
 		public string VillageName { get; set; }
 		public int CommuneID { get; set; }
 		public Commune Commune { get; set; }
+		public ICollection<House> Houses { get; set; }
 	}
 }
