@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MockPJ.Models
+﻿namespace MockPJ.Models
 {
 	public class Room : Base
 	{

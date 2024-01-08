@@ -7,6 +7,6 @@
 		public string GoogleMapLocation { get; set; }
 		public House House { get; set; }
 		public ICollection<Campus> Campuses { get; set; }
-		public ICollection<User > Users { get; set; }
+		public ICollection<User> Users { get; set; }
 	}
 }

@@ -3,16 +3,18 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace MockPJ.Migrations
 {
     /// <inheritdoc />
-    public partial class initDb : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Addresses",
                 columns: table => new
                 {
                     AddressID = table.Column<int>(type: "int", nullable: false)
@@ -24,11 +26,11 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.AddressID);
+                    table.PrimaryKey("PK_Addresses", x => x.AddressID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "District",
+                name: "Districts",
                 columns: table => new
                 {
                     DistrictID = table.Column<int>(type: "int", nullable: false)
@@ -39,11 +41,11 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_District", x => x.DistrictID);
+                    table.PrimaryKey("PK_Districts", x => x.DistrictID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoomType",
+                name: "RoomTypes",
                 columns: table => new
                 {
                     RoomTypeID = table.Column<int>(type: "int", nullable: false)
@@ -54,11 +56,11 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomType", x => x.RoomTypeID);
+                    table.PrimaryKey("PK_RoomTypes", x => x.RoomTypeID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Status",
+                name: "Statuses",
                 columns: table => new
                 {
                     StatusID = table.Column<int>(type: "int", nullable: false)
@@ -69,11 +71,11 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Status", x => x.StatusID);
+                    table.PrimaryKey("PK_Statuses", x => x.StatusID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserRole",
+                name: "UserRoles",
                 columns: table => new
                 {
                     RoleID = table.Column<int>(type: "int", nullable: false)
@@ -84,11 +86,11 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRole", x => x.RoleID);
+                    table.PrimaryKey("PK_UserRoles", x => x.RoleID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Campus",
+                name: "Campuses",
                 columns: table => new
                 {
                     CampusId = table.Column<int>(type: "int", nullable: false)
@@ -101,17 +103,17 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Campus", x => x.CampusId);
+                    table.PrimaryKey("PK_Campuses", x => x.CampusId);
                     table.ForeignKey(
-                        name: "FK_Campus_Address_AddressID",
+                        name: "FK_Campuses_Addresses_AddressID",
                         column: x => x.AddressID,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "AddressID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Commune",
+                name: "Communes",
                 columns: table => new
                 {
                     CommuneID = table.Column<int>(type: "int", nullable: false)
@@ -123,32 +125,32 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Commune", x => x.CommuneID);
+                    table.PrimaryKey("PK_Communes", x => x.CommuneID);
                     table.ForeignKey(
-                        name: "FK_Commune_District_DistrictID",
+                        name: "FK_Communes_Districts_DistrictID",
                         column: x => x.DistrictID,
-                        principalTable: "District",
+                        principalTable: "Districts",
                         principalColumn: "DistrictID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     UserID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FacebookUserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GoogleUserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PassWord = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FacebookUserID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GoogleUserID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
-                    ProfileImageLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FacebookURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdentityCardFrontSideImageLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdentityCardBackSideImageLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfileImageLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FacebookURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdentityCardFrontSideImageLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdentityCardBackSideImageLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddressID = table.Column<int>(type: "int", nullable: true),
                     RoleID = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
@@ -158,32 +160,32 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.UserID);
+                    table.PrimaryKey("PK_Users", x => x.UserID);
                     table.ForeignKey(
-                        name: "FK_User_Address_AddressID",
+                        name: "FK_Users_Addresses_AddressID",
                         column: x => x.AddressID,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "AddressID");
                     table.ForeignKey(
-                        name: "FK_User_UserRole_RoleID",
+                        name: "FK_Users_UserRoles_RoleID",
                         column: x => x.RoleID,
-                        principalTable: "UserRole",
+                        principalTable: "UserRoles",
                         principalColumn: "RoleID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_User_User_CreatedBy",
+                        name: "FK_Users_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_User_User_LastModifiedBy",
+                        name: "FK_Users_Users_LastModifiedBy",
                         column: x => x.LastModifiedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Village",
+                name: "Villages",
                 columns: table => new
                 {
                     VillageId = table.Column<int>(type: "int", nullable: false)
@@ -195,17 +197,17 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Village", x => x.VillageId);
+                    table.PrimaryKey("PK_Villages", x => x.VillageId);
                     table.ForeignKey(
-                        name: "FK_Village_Commune_CommuneID",
+                        name: "FK_Villages_Communes_CommuneID",
                         column: x => x.CommuneID,
-                        principalTable: "Commune",
+                        principalTable: "Communes",
                         principalColumn: "CommuneID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "House",
+                name: "Houses",
                 columns: table => new
                 {
                     HouseID = table.Column<int>(type: "int", nullable: false)
@@ -225,42 +227,42 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_House", x => x.HouseID);
+                    table.PrimaryKey("PK_Houses", x => x.HouseID);
                     table.ForeignKey(
-                        name: "FK_House_Address_AddressID",
+                        name: "FK_Houses_Addresses_AddressID",
                         column: x => x.AddressID,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "AddressID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_House_Campus_CampusID",
+                        name: "FK_Houses_Campuses_CampusID",
                         column: x => x.CampusID,
-                        principalTable: "Campus",
+                        principalTable: "Campuses",
                         principalColumn: "CampusId");
                     table.ForeignKey(
-                        name: "FK_House_User_CreatedBy",
+                        name: "FK_Houses_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_House_User_LandLordID",
+                        name: "FK_Houses_Users_LandLordID",
                         column: x => x.LandLordID,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_House_User_LastModifiedBy",
+                        name: "FK_Houses_Users_LastModifiedBy",
                         column: x => x.LastModifiedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_House_Village_VillageID",
+                        name: "FK_Houses_Villages_VillageID",
                         column: x => x.VillageID,
-                        principalTable: "Village",
+                        principalTable: "Villages",
                         principalColumn: "VillageId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "HouseImage",
+                name: "HouseImages",
                 columns: table => new
                 {
                     ImageID = table.Column<int>(type: "int", nullable: false)
@@ -274,27 +276,27 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HouseImage", x => x.ImageID);
+                    table.PrimaryKey("PK_HouseImages", x => x.ImageID);
                     table.ForeignKey(
-                        name: "FK_HouseImage_House_HouseID",
+                        name: "FK_HouseImages_Houses_HouseID",
                         column: x => x.HouseID,
-                        principalTable: "House",
+                        principalTable: "Houses",
                         principalColumn: "HouseID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HouseImage_User_CreatedBy",
+                        name: "FK_HouseImages_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_HouseImage_User_LastModifiedBy",
+                        name: "FK_HouseImages_Users_LastModifiedBy",
                         column: x => x.LastModifiedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rate",
+                name: "Rates",
                 columns: table => new
                 {
                     RateID = table.Column<int>(type: "int", nullable: false)
@@ -311,32 +313,32 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rate", x => x.RateID);
+                    table.PrimaryKey("PK_Rates", x => x.RateID);
                     table.ForeignKey(
-                        name: "FK_Rate_House_HouseID",
+                        name: "FK_Rates_Houses_HouseID",
                         column: x => x.HouseID,
-                        principalTable: "House",
+                        principalTable: "Houses",
                         principalColumn: "HouseID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Rate_User_CreatedBy",
+                        name: "FK_Rates_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_Rate_User_LastModifiedBy",
+                        name: "FK_Rates_Users_LastModifiedBy",
                         column: x => x.LastModifiedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_Rate_User_StudentID",
+                        name: "FK_Rates_Users_StudentID",
                         column: x => x.StudentID,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Report",
+                name: "Reports",
                 columns: table => new
                 {
                     ReportID = table.Column<int>(type: "int", nullable: false)
@@ -351,31 +353,31 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Report", x => x.ReportID);
+                    table.PrimaryKey("PK_Reports", x => x.ReportID);
                     table.ForeignKey(
-                        name: "FK_Report_House_HouseID",
+                        name: "FK_Reports_Houses_HouseID",
                         column: x => x.HouseID,
-                        principalTable: "House",
+                        principalTable: "Houses",
                         principalColumn: "HouseID");
                     table.ForeignKey(
-                        name: "FK_Report_User_CreatedBy",
+                        name: "FK_Reports_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_Report_User_LastModifiedBy",
+                        name: "FK_Reports_Users_LastModifiedBy",
                         column: x => x.LastModifiedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_Report_User_StudentID",
+                        name: "FK_Reports_Users_StudentID",
                         column: x => x.StudentID,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Room",
+                name: "Rooms",
                 columns: table => new
                 {
                     RoomID = table.Column<int>(type: "int", nullable: false)
@@ -397,37 +399,37 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Room", x => x.RoomID);
+                    table.PrimaryKey("PK_Rooms", x => x.RoomID);
                     table.ForeignKey(
-                        name: "FK_Room_House_HouseID",
+                        name: "FK_Rooms_Houses_HouseID",
                         column: x => x.HouseID,
-                        principalTable: "House",
+                        principalTable: "Houses",
                         principalColumn: "HouseID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Room_RoomType_RoomTypeID",
+                        name: "FK_Rooms_RoomTypes_RoomTypeID",
                         column: x => x.RoomTypeID,
-                        principalTable: "RoomType",
+                        principalTable: "RoomTypes",
                         principalColumn: "RoomTypeID");
                     table.ForeignKey(
-                        name: "FK_Room_Status_StatusID",
+                        name: "FK_Rooms_Statuses_StatusID",
                         column: x => x.StatusID,
-                        principalTable: "Status",
+                        principalTable: "Statuses",
                         principalColumn: "StatusID");
                     table.ForeignKey(
-                        name: "FK_Room_User_CreatedBy",
+                        name: "FK_Rooms_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_Room_User_LastModifiedBy",
+                        name: "FK_Rooms_Users_LastModifiedBy",
                         column: x => x.LastModifiedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoomHistory",
+                name: "RoomHistories",
                 columns: table => new
                 {
                     RoomHistoryID = table.Column<int>(type: "int", nullable: false)
@@ -441,26 +443,26 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomHistory", x => x.RoomHistoryID);
+                    table.PrimaryKey("PK_RoomHistories", x => x.RoomHistoryID);
                     table.ForeignKey(
-                        name: "FK_RoomHistory_Room_RoomID",
+                        name: "FK_RoomHistories_Rooms_RoomID",
                         column: x => x.RoomID,
-                        principalTable: "Room",
+                        principalTable: "Rooms",
                         principalColumn: "RoomID");
                     table.ForeignKey(
-                        name: "FK_RoomHistory_User_CreatedBy",
+                        name: "FK_RoomHistories_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_RoomHistory_User_LastModifiedBy",
+                        name: "FK_RoomHistories_Users_LastModifiedBy",
                         column: x => x.LastModifiedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoomImage",
+                name: "RoomImages",
                 columns: table => new
                 {
                     ImageID = table.Column<int>(type: "int", nullable: false)
@@ -474,199 +476,227 @@ namespace MockPJ.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomImage", x => x.ImageID);
+                    table.PrimaryKey("PK_RoomImages", x => x.ImageID);
                     table.ForeignKey(
-                        name: "FK_RoomImage_Room_RoomID",
+                        name: "FK_RoomImages_Rooms_RoomID",
                         column: x => x.RoomID,
-                        principalTable: "Room",
+                        principalTable: "Rooms",
                         principalColumn: "RoomID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RoomImage_User_CreatedBy",
+                        name: "FK_RoomImages_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                     table.ForeignKey(
-                        name: "FK_RoomImage_User_LastModifiedBy",
+                        name: "FK_RoomImages_Users_LastModifiedBy",
                         column: x => x.LastModifiedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserID");
                 });
 
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "RoleID", "CreatedDate", "LastModifiedDate", "RoleName" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5416), null, "Admin" },
+                    { 2, new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5420), null, "Staff" },
+                    { 3, new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5421), null, "LandLord" },
+                    { 4, new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5422), null, "Student" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserID", "Active", "AddressID", "CreatedBy", "CreatedDate", "DisplayName", "Email", "FacebookURL", "FacebookUserID", "GoogleUserID", "IdentityCardBackSideImageLink", "IdentityCardFrontSideImageLink", "LastModifiedBy", "LastModifiedDate", "Password", "PhoneNumber", "ProfileImageLink", "RoleID" },
+                values: new object[] { 1, true, null, null, new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5620), "Admin", "admin@gmail.com", null, null, null, null, null, null, null, "Aa@123456", "0123456789", null, 4 });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Campus_AddressID",
-                table: "Campus",
+                name: "IX_Campuses_AddressID",
+                table: "Campuses",
                 column: "AddressID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Commune_DistrictID",
-                table: "Commune",
+                name: "IX_Communes_DistrictID",
+                table: "Communes",
                 column: "DistrictID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_House_AddressID",
-                table: "House",
+                name: "IX_HouseImages_CreatedBy",
+                table: "HouseImages",
+                column: "CreatedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HouseImages_HouseID",
+                table: "HouseImages",
+                column: "HouseID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HouseImages_LastModifiedBy",
+                table: "HouseImages",
+                column: "LastModifiedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Houses_AddressID",
+                table: "Houses",
                 column: "AddressID",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_House_CampusID",
-                table: "House",
+                name: "IX_Houses_CampusID",
+                table: "Houses",
                 column: "CampusID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_House_CreatedBy",
-                table: "House",
+                name: "IX_Houses_CreatedBy",
+                table: "Houses",
                 column: "CreatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_House_LandLordID",
-                table: "House",
+                name: "IX_Houses_LandLordID",
+                table: "Houses",
                 column: "LandLordID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_House_LastModifiedBy",
-                table: "House",
+                name: "IX_Houses_LastModifiedBy",
+                table: "Houses",
                 column: "LastModifiedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_House_VillageID",
-                table: "House",
+                name: "IX_Houses_VillageID",
+                table: "Houses",
                 column: "VillageID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HouseImage_CreatedBy",
-                table: "HouseImage",
+                name: "IX_Rates_CreatedBy",
+                table: "Rates",
                 column: "CreatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HouseImage_HouseID",
-                table: "HouseImage",
+                name: "IX_Rates_HouseID",
+                table: "Rates",
                 column: "HouseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HouseImage_LastModifiedBy",
-                table: "HouseImage",
+                name: "IX_Rates_LastModifiedBy",
+                table: "Rates",
                 column: "LastModifiedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rate_CreatedBy",
-                table: "Rate",
-                column: "CreatedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rate_HouseID",
-                table: "Rate",
-                column: "HouseID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rate_LastModifiedBy",
-                table: "Rate",
-                column: "LastModifiedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rate_StudentID",
-                table: "Rate",
+                name: "IX_Rates_StudentID",
+                table: "Rates",
                 column: "StudentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Report_CreatedBy",
-                table: "Report",
+                name: "IX_Reports_CreatedBy",
+                table: "Reports",
                 column: "CreatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Report_HouseID",
-                table: "Report",
+                name: "IX_Reports_HouseID",
+                table: "Reports",
                 column: "HouseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Report_LastModifiedBy",
-                table: "Report",
+                name: "IX_Reports_LastModifiedBy",
+                table: "Reports",
                 column: "LastModifiedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Report_StudentID",
-                table: "Report",
+                name: "IX_Reports_StudentID",
+                table: "Reports",
                 column: "StudentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Room_CreatedBy",
-                table: "Room",
+                name: "IX_RoomHistories_CreatedBy",
+                table: "RoomHistories",
                 column: "CreatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Room_HouseID",
-                table: "Room",
-                column: "HouseID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Room_LastModifiedBy",
-                table: "Room",
+                name: "IX_RoomHistories_LastModifiedBy",
+                table: "RoomHistories",
                 column: "LastModifiedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Room_RoomTypeID",
-                table: "Room",
+                name: "IX_RoomHistories_RoomID",
+                table: "RoomHistories",
+                column: "RoomID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomImages_CreatedBy",
+                table: "RoomImages",
+                column: "CreatedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomImages_LastModifiedBy",
+                table: "RoomImages",
+                column: "LastModifiedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomImages_RoomID",
+                table: "RoomImages",
+                column: "RoomID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rooms_CreatedBy",
+                table: "Rooms",
+                column: "CreatedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rooms_HouseID",
+                table: "Rooms",
+                column: "HouseID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rooms_LastModifiedBy",
+                table: "Rooms",
+                column: "LastModifiedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rooms_RoomTypeID",
+                table: "Rooms",
                 column: "RoomTypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Room_StatusID",
-                table: "Room",
+                name: "IX_Rooms_StatusID",
+                table: "Rooms",
                 column: "StatusID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoomHistory_CreatedBy",
-                table: "RoomHistory",
-                column: "CreatedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RoomHistory_LastModifiedBy",
-                table: "RoomHistory",
-                column: "LastModifiedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RoomHistory_RoomID",
-                table: "RoomHistory",
-                column: "RoomID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RoomImage_CreatedBy",
-                table: "RoomImage",
-                column: "CreatedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RoomImage_LastModifiedBy",
-                table: "RoomImage",
-                column: "LastModifiedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RoomImage_RoomID",
-                table: "RoomImage",
-                column: "RoomID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_AddressID",
-                table: "User",
+                name: "IX_Users_AddressID",
+                table: "Users",
                 column: "AddressID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_CreatedBy",
-                table: "User",
+                name: "IX_Users_CreatedBy",
+                table: "Users",
                 column: "CreatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_LastModifiedBy",
-                table: "User",
+                name: "IX_Users_DisplayName",
+                table: "Users",
+                column: "DisplayName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_LastModifiedBy",
+                table: "Users",
                 column: "LastModifiedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_RoleID",
-                table: "User",
+                name: "IX_Users_RoleID",
+                table: "Users",
                 column: "RoleID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Village_CommuneID",
-                table: "Village",
+                name: "IX_Villages_CommuneID",
+                table: "Villages",
                 column: "CommuneID");
         }
 
@@ -674,52 +704,52 @@ namespace MockPJ.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "HouseImage");
+                name: "HouseImages");
 
             migrationBuilder.DropTable(
-                name: "Rate");
+                name: "Rates");
 
             migrationBuilder.DropTable(
-                name: "Report");
+                name: "Reports");
 
             migrationBuilder.DropTable(
-                name: "RoomHistory");
+                name: "RoomHistories");
 
             migrationBuilder.DropTable(
-                name: "RoomImage");
+                name: "RoomImages");
 
             migrationBuilder.DropTable(
-                name: "Room");
+                name: "Rooms");
 
             migrationBuilder.DropTable(
-                name: "House");
+                name: "Houses");
 
             migrationBuilder.DropTable(
-                name: "RoomType");
+                name: "RoomTypes");
 
             migrationBuilder.DropTable(
-                name: "Status");
+                name: "Statuses");
 
             migrationBuilder.DropTable(
-                name: "Campus");
+                name: "Campuses");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Village");
+                name: "Villages");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
-                name: "UserRole");
+                name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "Commune");
+                name: "Communes");
 
             migrationBuilder.DropTable(
-                name: "District");
+                name: "Districts");
         }
     }
 }

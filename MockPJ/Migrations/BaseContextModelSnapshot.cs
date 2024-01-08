@@ -46,7 +46,7 @@ namespace MockPJ.Migrations
 
                     b.HasKey("AddressID");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("MockPJ.Models.Campus", b =>
@@ -77,7 +77,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("AddressID");
 
-                    b.ToTable("Campus");
+                    b.ToTable("Campuses");
                 });
 
             modelBuilder.Entity("MockPJ.Models.Commune", b =>
@@ -105,7 +105,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("DistrictID");
 
-                    b.ToTable("Commune");
+                    b.ToTable("Communes");
                 });
 
             modelBuilder.Entity("MockPJ.Models.District", b =>
@@ -128,7 +128,7 @@ namespace MockPJ.Migrations
 
                     b.HasKey("DistrictID");
 
-                    b.ToTable("District");
+                    b.ToTable("Districts");
                 });
 
             modelBuilder.Entity("MockPJ.Models.House", b =>
@@ -192,7 +192,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("VillageID");
 
-                    b.ToTable("House");
+                    b.ToTable("Houses");
                 });
 
             modelBuilder.Entity("MockPJ.Models.HouseImage", b =>
@@ -230,7 +230,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("LastModifiedBy");
 
-                    b.ToTable("HouseImage");
+                    b.ToTable("HouseImages");
                 });
 
             modelBuilder.Entity("MockPJ.Models.Rate", b =>
@@ -280,7 +280,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("Rate");
+                    b.ToTable("Rates");
                 });
 
             modelBuilder.Entity("MockPJ.Models.Report", b =>
@@ -323,7 +323,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("Report");
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("MockPJ.Models.Room", b =>
@@ -390,7 +390,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("StatusID");
 
-                    b.ToTable("Room");
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("MockPJ.Models.RoomHistory", b =>
@@ -428,7 +428,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("RoomID");
 
-                    b.ToTable("RoomHistory");
+                    b.ToTable("RoomHistories");
                 });
 
             modelBuilder.Entity("MockPJ.Models.RoomImage", b =>
@@ -466,7 +466,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("RoomID");
 
-                    b.ToTable("RoomImage");
+                    b.ToTable("RoomImages");
                 });
 
             modelBuilder.Entity("MockPJ.Models.RoomType", b =>
@@ -489,7 +489,7 @@ namespace MockPJ.Migrations
 
                     b.HasKey("RoomTypeID");
 
-                    b.ToTable("RoomType");
+                    b.ToTable("RoomTypes");
                 });
 
             modelBuilder.Entity("MockPJ.Models.Status", b =>
@@ -512,7 +512,7 @@ namespace MockPJ.Migrations
 
                     b.HasKey("StatusID");
 
-                    b.ToTable("Status");
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("MockPJ.Models.User", b =>
@@ -537,30 +537,25 @@ namespace MockPJ.Migrations
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FacebookURL")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FacebookUserID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GoogleUserID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdentityCardBackSideImageLink")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdentityCardFrontSideImageLink")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("LastModifiedBy")
@@ -569,16 +564,14 @@ namespace MockPJ.Migrations
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PassWord")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfileImageLink")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoleID")
@@ -590,11 +583,30 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("CreatedBy");
 
+                    b.HasIndex("DisplayName")
+                        .IsUnique();
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.HasIndex("LastModifiedBy");
 
                     b.HasIndex("RoleID");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserID = 1,
+                            Active = true,
+                            CreatedDate = new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5620),
+                            DisplayName = "Admin",
+                            Email = "admin@gmail.com",
+                            Password = "Aa@123456",
+                            PhoneNumber = "0123456789",
+                            RoleID = 4
+                        });
                 });
 
             modelBuilder.Entity("MockPJ.Models.UserRole", b =>
@@ -617,7 +629,33 @@ namespace MockPJ.Migrations
 
                     b.HasKey("RoleID");
 
-                    b.ToTable("UserRole");
+                    b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleID = 1,
+                            CreatedDate = new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5416),
+                            RoleName = "Admin"
+                        },
+                        new
+                        {
+                            RoleID = 2,
+                            CreatedDate = new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5420),
+                            RoleName = "Staff"
+                        },
+                        new
+                        {
+                            RoleID = 3,
+                            CreatedDate = new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5421),
+                            RoleName = "LandLord"
+                        },
+                        new
+                        {
+                            RoleID = 4,
+                            CreatedDate = new DateTime(2024, 1, 8, 23, 39, 58, 170, DateTimeKind.Utc).AddTicks(5422),
+                            RoleName = "Student"
+                        });
                 });
 
             modelBuilder.Entity("MockPJ.Models.Village", b =>
@@ -645,7 +683,7 @@ namespace MockPJ.Migrations
 
                     b.HasIndex("CommuneID");
 
-                    b.ToTable("Village");
+                    b.ToTable("Villages");
                 });
 
             modelBuilder.Entity("MockPJ.Models.Campus", b =>

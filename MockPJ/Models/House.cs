@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MockPJ.Models
+﻿namespace MockPJ.Models
 {
 	public class House : Base
 	{
 		public int HouseID { get; set; }
-		public string HouseName { get; set;}
+		public string HouseName { get; set; }
 		public string Information { get; set; }
 		public int AddressID { get; set; }
 		public int? VillageID { get; set; }
