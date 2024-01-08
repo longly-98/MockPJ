@@ -17,11 +17,11 @@ namespace MockPJ.Models
 		public string IdentityCardFrontSideImageLink { get; set; }
 		public string IdentityCardBackSideImageLink { get; set; }
 		public int? AddressID { get; set; }
-		public Address Address { get; set; }
 		public int RoleID { get; set; }
-		public UserRole Role { get; set; }
 		public int? CreatedBy { get; set; }
 		public int? LastModifiedBy { get; set; }
+		public UserRole Role { get; set; }
+		public Address Address { get; set; }
 		public User Creator { get; set; }
 		public User Modifier { get; set; }
 		public ICollection<RoomHistory> CreateRoomHistories { get; set; }
