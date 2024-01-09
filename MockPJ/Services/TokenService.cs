@@ -57,7 +57,7 @@ namespace MockPJ.Services
 						new Claim(ClaimTypes.Sid, user.UserID.ToString()),
 						new Claim(ClaimTypes.Name, user.DisplayName),
 						new Claim(ClaimTypes.Email, user.Email),
-						new Claim(ClaimTypes.Role, user.Role.RoleName.ToString())
+						new Claim(ClaimTypes.Role, user.Role.RoleName)
 					};
 
 				return claims;

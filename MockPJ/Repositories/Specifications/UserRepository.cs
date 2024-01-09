@@ -13,9 +13,9 @@ namespace MockPJ.Repositories.Specifications
 			_context = context;
 		}
 
-		public async Task<User> GetWithRoleAsync(Expression<Func<User, bool>> filter = null, CancellationToken cancellationToken = default)
+		public async Task<User> GetWithRoleAsync(Expression<Func<User, bool>> filter = null)
 		{
-			return await _context.Users.Include(u => u.Role).AsNoTracking().FirstOrDefaultAsync(filter, cancellationToken);
+			return await _context.Users.Include(u => u.Role).AsNoTracking().FirstOrDefaultAsync(filter);
 		}
 	}
 }

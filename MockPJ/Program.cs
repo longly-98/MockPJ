@@ -1,4 +1,4 @@
-
+﻿
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +10,7 @@ using MockPJ.Repositories.Specifications;
 using MockPJ.Services;
 using MockPJ.Utilities.AutoMapperProfile;
 using System.Text;
+using MockPJ.Controllers;
 
 namespace MockPJ
 {
@@ -58,9 +59,12 @@ namespace MockPJ
 				});
 			});
 
-			builder.Services.AddScoped<TokenService, TokenService>();
 			builder.Services.AddScoped<IUserRepository, UserRepository>();
+			builder.Services.AddScoped<IHouseRepository, HouseRepository>();
+
+			builder.Services.AddScoped<TokenService, TokenService>();
 			builder.Services.AddScoped<SessionService, SessionService>();
+			builder.Services.AddScoped<HouseService, HouseService>();
 
 			/*			builder.Services.AddIdentity<User, IdentityRole>(options =>
 						{
@@ -108,6 +112,12 @@ namespace MockPJ
 				app.UseSwagger();
 				app.UseSwaggerUI();
 			}
+
+			if (app.Environment.IsDevelopment())
+			{
+				app.UseSwagger();
+				app.UseSwaggerUI();
+			};
 
 			app.UseHttpsRedirection();
 			app.UseAuthentication();

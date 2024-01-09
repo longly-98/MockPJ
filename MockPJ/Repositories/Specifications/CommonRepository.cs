@@ -34,14 +34,14 @@ namespace MockPJ.Repositories.Specifications
 			return await _context.SaveChangesAsync();
 		}
 
-		public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null, CancellationToken cancellationToken = default)
+		public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null)
 		{
-			return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(filter, cancellationToken);
+			return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(filter);
 		}
 
-		public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter = null, CancellationToken cancellationToken = default)
+		public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter = null)
 		{
-			return await (filter == null ? _context.Set<T>().ToListAsync(cancellationToken) : _context.Set<T>().Where(filter).ToListAsync(cancellationToken));
+			return await (filter == null ? _context.Set<T>().ToListAsync() : _context.Set<T>().Where(filter).ToListAsync());
 		}
 
 		public async Task<T> UpdateAsync(T entity)

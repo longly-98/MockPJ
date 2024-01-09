@@ -63,7 +63,141 @@ namespace MockPJ.Models
 			);
 
 			modelBuilder.Entity<User>().HasData(
-				new User { UserID = 1 , Email = "admin@gmail.com", RoleID = 4, Active = true, DisplayName = "Admin", PhoneNumber = "0123456789", Password = "Aa@123456" }
+				new User { UserID = 1, Email = "admin@gmail.com", RoleID = 1, Active = true, DisplayName = "Admin", PhoneNumber = "0123456789", Password = "Aa@123456" },
+				new User { UserID = 2, Email = "staff@gmail.com", RoleID = 2, Active = true, DisplayName = "Staff", PhoneNumber = "0123456789", Password = "Aa@123456" },
+				new User { UserID = 3, Email = "landlord@gmail.com", RoleID = 3, Active = true, DisplayName = "LandLord", PhoneNumber = "0123456789", Password = "Aa@123456" },
+				new User { UserID = 4, Email = "student@gmail.com", RoleID = 4, Active = true, DisplayName = "Student", PhoneNumber = "0123456789", Password = "Aa@123456" }
+			);
+
+			modelBuilder.Entity<Address>().HasData(
+				new Address { AddressID = 1, Addresses = "so 1, ngách 1, ngõ 1, đường 1", GoogleMapLocation = "111111,1111111" },
+				new Address { AddressID = 2, Addresses = "so 2, ngách 1, ngõ 1, đường 1", GoogleMapLocation = "111111,1111111" },
+				new Address { AddressID = 3, Addresses = "so 3, ngách 1, ngõ 1, đường 1", GoogleMapLocation = "111111,1111111" }
+			);
+
+			modelBuilder.Entity<Campus>().HasData(
+				new Campus { CampusId = 1, AddressID = 1, CampusName = "Campus A" }
+			);
+
+			modelBuilder.Entity<District>().HasData(
+				new District { DistrictID = 1, DistrictName = "Dong Da" }
+			);
+
+			modelBuilder.Entity<Commune>().HasData(
+				new Commune { CommuneID = 1, CommuneName = "Phuong Lien", DistrictID = 1 }
+			);
+
+			modelBuilder.Entity<Village>().HasData(
+				new Village { VillageId = 1, VillageName = "Village A", CommuneID = 1 }
+			);
+
+			modelBuilder.Entity<House>().HasData(
+				new House { HouseID = 1, AddressID = 1, CampusID = 1, CreatedBy = 1, HouseName = "House A", Information = "AC, Hot water", LandLordID = 3, PowerPrice = 4000, VillageID = 1, WaterPrice = 30000 },
+				new House { HouseID = 2, AddressID = 2, CampusID = 1, CreatedBy = 1, HouseName = "House B", Information = "AC, Hot water", LandLordID = 3, PowerPrice = 4000, VillageID = 1, WaterPrice = 30000 },
+				new House { HouseID = 3, AddressID = 3, CampusID = 1, CreatedBy = 1, HouseName = "House C", Information = "AC, Hot water", LandLordID = 3, PowerPrice = 4000, VillageID = 1, WaterPrice = 30000 }
+			);
+
+			modelBuilder.Entity<HouseImage>().HasData(
+				new HouseImage { ImageID = 1, HouseID = 1, ImageLink = "link" },
+				new HouseImage { ImageID = 2, HouseID = 1, ImageLink = "link" },
+				new HouseImage { ImageID = 3, HouseID = 2, ImageLink = "link" },
+				new HouseImage { ImageID = 4, HouseID = 2, ImageLink = "link" },
+				new HouseImage { ImageID = 5, HouseID = 3, ImageLink = "link" },
+				new HouseImage { ImageID = 6, HouseID = 3, ImageLink = "link" },
+				new HouseImage { ImageID = 7, HouseID = 3, ImageLink = "link" }
+			);
+
+			modelBuilder.Entity<Status>().HasData(
+				new Status { StatusID = 1, StatusName = "Available" },
+				new Status { StatusID = 2, StatusName = "Not Available" }
+			);
+
+			modelBuilder.Entity<RoomType>().HasData(
+				new RoomType { RoomTypeID = 1, RoomTypeName = "Shared hostel" },
+				new RoomType { RoomTypeID = 2, RoomTypeName = "Apartment" },
+				new RoomType { RoomTypeID = 3, RoomTypeName = "Mini apartment" },
+				new RoomType { RoomTypeID = 4, RoomTypeName = "Homestays" }
+			);
+
+			modelBuilder.Entity<Room>().HasData(
+				new Room
+				{
+					RoomID = 1,
+					RoomName = "101",
+					RoomTypeID = 1,
+					StatusID = 1,
+					Area = "20m2",
+					HouseID = 1,
+					BuildingNumber = 1,
+					CurrentAmountOfPeople = 0,
+					FloorNumber = 1,
+					MaxAmountOfPeople = 3,
+					RoomPrice = 1000000
+				},
+				new Room
+				{
+					RoomID = 2,
+					RoomName = "102",
+					RoomTypeID = 1,
+					StatusID = 1,
+					Area = "20m2",
+					HouseID = 1,
+					BuildingNumber = 1,
+					CurrentAmountOfPeople = 1,
+					FloorNumber = 1,
+					MaxAmountOfPeople = 3,
+					RoomPrice = 900000
+				},
+				new Room
+				{
+					RoomID = 3,
+					RoomName = "103",
+					RoomTypeID = 3,
+					StatusID = 1,
+					Area = "25m2",
+					HouseID = 2,
+					BuildingNumber = 2,
+					CurrentAmountOfPeople = 0,
+					FloorNumber = 1,
+					MaxAmountOfPeople = 3,
+					RoomPrice = 3000000
+				},
+				new Room
+				{
+					RoomID = 4,
+					RoomName = "104",
+					RoomTypeID = 3,
+					StatusID = 1,
+					Area = "28m2",
+					HouseID = 2,
+					BuildingNumber = 1,
+					CurrentAmountOfPeople = 0,
+					FloorNumber = 1,
+					MaxAmountOfPeople = 3,
+					RoomPrice = 4000000
+				},
+				new Room
+				{
+					RoomID = 5,
+					RoomName = "105",
+					RoomTypeID = 2,
+					StatusID = 1,
+					Area = "40m2",
+					HouseID = 3,
+					BuildingNumber = 1,
+					CurrentAmountOfPeople = 0,
+					FloorNumber = 1,
+					MaxAmountOfPeople = 3,
+					RoomPrice = 10000000
+				}
+			);
+
+			modelBuilder.Entity<RoomImage>().HasData(
+				new RoomImage { ImageID = 1, ImageLink = "link", RoomID = 1 },
+				new RoomImage { ImageID = 2, ImageLink = "link", RoomID = 2 },
+				new RoomImage { ImageID = 3, ImageLink = "link", RoomID = 3 },
+				new RoomImage { ImageID = 4, ImageLink = "link", RoomID = 4 },
+				new RoomImage { ImageID = 5, ImageLink = "link", RoomID = 5 }
 			);
 
 			base.OnModelCreating(modelBuilder);

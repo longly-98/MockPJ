@@ -1,4 +1,6 @@
-﻿namespace MockPJ.Models
+﻿using Microsoft.AspNetCore.OpenApi;
+using Microsoft.AspNetCore.Http.HttpResults;
+namespace MockPJ.Models
 {
 	public class House : Base
 	{
