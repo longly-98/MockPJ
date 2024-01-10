@@ -200,6 +200,13 @@ namespace MockPJ.Models
 				new RoomImage { ImageID = 5, ImageLink = "link", RoomID = 5 }
 			);
 
+			modelBuilder.Entity<Rate>().HasData(
+				new Rate { RateID  = 1, HouseID = 1, Comment = "good", LandLordReply = "thanks", Star = 5, StudentID = 4, CreatedBy = 4 },
+				new Rate { RateID = 2, HouseID = 1, Comment = "good", LandLordReply = "thanks", Star = 5, StudentID = 4, CreatedBy = 4 },
+				new Rate { RateID = 3, HouseID = 2, Comment = "good", LandLordReply = "thanks", Star = 5, StudentID = 4, CreatedBy = 4 },
+				new Rate { RateID = 4, HouseID = 3, Comment = "good", LandLordReply = "thanks", Star = 5, StudentID = 4, CreatedBy = 4 }
+			);
+
 			base.OnModelCreating(modelBuilder);
 		}
 	}

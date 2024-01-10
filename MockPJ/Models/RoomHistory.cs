@@ -1,7 +1,10 @@
-﻿namespace MockPJ.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MockPJ.Models
 {
 	public class RoomHistory : Base
 	{
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int RoomHistoryID { get; set; }
 		public string CustomerName { get; set; }
 		public int? RoomID { get; set; }

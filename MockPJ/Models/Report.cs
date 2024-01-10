@@ -1,7 +1,10 @@
-﻿namespace MockPJ.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MockPJ.Models
 {
 	public class Report : Base
 	{
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int ReportID { get; set; }
 		public string ReportContent { get; set; }
 		public int? HouseID { get; set; }

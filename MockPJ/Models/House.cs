@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.OpenApi;
 using Microsoft.AspNetCore.Http.HttpResults;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace MockPJ.Models
 {
 	public class House : Base
 	{
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int HouseID { get; set; }
 		public string HouseName { get; set; }
 		public string Information { get; set; }

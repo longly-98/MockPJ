@@ -17,5 +17,10 @@ namespace MockPJ.Repositories.Specifications
 		{
 			return await _context.Users.Include(u => u.Role).AsNoTracking().FirstOrDefaultAsync(filter);
 		}
+
+		public async Task<User> GetLandLordDetailsAsync(Expression<Func<User, bool>> filter = null)
+		{
+			return await _context.Users.Include(u => u.Address).AsNoTracking().FirstOrDefaultAsync(filter);
+		}
 	}
 }
