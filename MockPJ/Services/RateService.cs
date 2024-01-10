@@ -31,10 +31,8 @@ namespace MockPJ.Services
 			return _mapper.Map<List<GetRatesReturnDTO>>(list);
 		}
 
-		public async Task CreateRate(CreateRateDTO rate)
+		public async Task<Rate> CreateRate(CreateRateDTO rate)
 		{
-			rate.CreatedBy = GetCurrentUser();
-
 			var house = await _houseRepository.GetAsync(x => x.HouseID == rate.HouseID);
 			if (house == null)
 			{
@@ -47,7 +45,11 @@ namespace MockPJ.Services
 				throw new NotFoundException("Student not found");
 			}
 
-			var addedRate = await _rateRepository.AddAsync(_mapper.Map<Rate>(rate));
+			var mappedRate = _mapper.Map<Rate>(rate);
+			mappedRate.CreatedBy = GetCurrentUser();
+			var addedRate = await _rateRepository.AddAsync(mappedRate);
+
+			return addedRate;
 		}
 	}
 }

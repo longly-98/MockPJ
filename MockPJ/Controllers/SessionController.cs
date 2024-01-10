@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
@@ -143,5 +144,29 @@ namespace MockPJ.Controllers
 			}
 		}
 
+		[Authorize]
+		[HttpPost]
+		[Route("changePassword")]
+		public async Task<ActionResult> ChangePassword(ChangePasswordRequestDTO req)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			try
+			{
+				var res = await _sessionService.ChangePasswordAsync(req);
+
+				if (!res) { return BadRequest("Wrong password"); }
+
+				return Ok();
+			}
+
+			catch (Exception)
+			{
+				return BadRequest("Something went wrong");
+			}
+		}
 	}
 }

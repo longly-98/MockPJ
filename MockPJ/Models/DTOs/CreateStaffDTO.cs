@@ -2,12 +2,12 @@
 
 namespace MockPJ.Models.DTOs
 {
-	public class AuthRequest
+	public class CreateStaffDTO
 	{
 		[Required]
 		[EmailAddress]
-		public string Email { get; set; } = null!;
+		public string Email { get; set; }
 		[Required]
-		public string Password { get; set; } = null!;
+		public string Username { get; set; }
 	}
 }

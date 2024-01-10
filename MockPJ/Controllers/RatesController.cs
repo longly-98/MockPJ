@@ -38,7 +38,7 @@ namespace MockPJ.Controllers
 
 		[Authorize(Roles = "Student")]
 		[HttpPost]
-		public async Task<ActionResult<GetRatesReturnDTO>> CreateRate(CreateRateDTO rate)
+		public async Task<ActionResult> CreateRate(CreateRateDTO rate)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -47,8 +47,8 @@ namespace MockPJ.Controllers
 
 			try
 			{
-				await _service.CreateRate(rate);
-				return Ok();
+				var addedRate = await _service.CreateRate(rate);
+				return CreatedAtAction("CreateRate", new { id = addedRate.RateID });
 			}
 			catch (Exception e)
 			{

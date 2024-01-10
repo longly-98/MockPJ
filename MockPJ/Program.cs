@@ -63,6 +63,8 @@ namespace MockPJ
 			builder.Services.AddScoped<IHouseRepository, HouseRepository>();
 			builder.Services.AddScoped<IRateRepository, RateRepository>();
 			builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+			builder.Services.AddScoped<IReportRepository, ReportRepository>();
+			builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
 			builder.Services.AddScoped<TokenService, TokenService>();
 			builder.Services.AddScoped<SessionService, SessionService>();
@@ -70,6 +72,7 @@ namespace MockPJ
 			builder.Services.AddScoped<RateService, RateService>();
 			builder.Services.AddScoped<UserService, UserService>();
 			builder.Services.AddScoped<RoomService, RoomService>();
+			builder.Services.AddScoped<ReportService, ReportService>();
 
 			/*			builder.Services.AddIdentity<User, IdentityRole>(options =>
 						{

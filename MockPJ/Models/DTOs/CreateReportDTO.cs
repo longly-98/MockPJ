@@ -2,12 +2,10 @@
 
 namespace MockPJ.Models.DTOs
 {
-	public class CreateRateDTO
+	public class CreateReportDTO
 	{
-		[Required(ErrorMessage = "required")]
-		public int? Star { get; set; }
-		public string? Comment { get; set; }
-		public string? LandLordReply { get; set; }
+		[Required]
+		public string? ReportContent { get; set; }
 		[Required]
 		public int? HouseID { get; set; }
 		[Required]

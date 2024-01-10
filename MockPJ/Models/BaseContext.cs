@@ -62,11 +62,12 @@ namespace MockPJ.Models
 				new UserRole { RoleID = 4, RoleName = "Student" }
 			);
 
+			var hashedPwd = BCrypt.Net.BCrypt.HashPassword("Aa@123456");
 			modelBuilder.Entity<User>().HasData(
-				new User { UserID = 1, Email = "admin@gmail.com", RoleID = 1, Active = true, DisplayName = "Admin", PhoneNumber = "0123456789", Password = "Aa@123456" },
-				new User { UserID = 2, Email = "staff@gmail.com", RoleID = 2, Active = true, DisplayName = "Staff", PhoneNumber = "0123456789", Password = "Aa@123456" },
-				new User { UserID = 3, Email = "landlord@gmail.com", RoleID = 3, Active = true, DisplayName = "LandLord", PhoneNumber = "0123456789", Password = "Aa@123456" },
-				new User { UserID = 4, Email = "student@gmail.com", RoleID = 4, Active = true, DisplayName = "Student", PhoneNumber = "0123456789", Password = "Aa@123456" }
+				new User { UserID = 1, Email = "admin@gmail.com", RoleID = 1, Active = true, DisplayName = "Admin", PhoneNumber = "0123456789", Password = hashedPwd },
+				new User { UserID = 2, Email = "staff@gmail.com", RoleID = 2, Active = true, DisplayName = "Staff", PhoneNumber = "0123456789", Password = hashedPwd },
+				new User { UserID = 3, Email = "landlord@gmail.com", RoleID = 3, Active = true, DisplayName = "LandLord", PhoneNumber = "0123456789", Password = hashedPwd },
+				new User { UserID = 4, Email = "student@gmail.com", RoleID = 4, Active = true, DisplayName = "Student", PhoneNumber = "0123456789", Password = hashedPwd }
 			);
 
 			modelBuilder.Entity<Address>().HasData(
