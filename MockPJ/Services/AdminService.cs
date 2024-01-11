@@ -6,13 +6,13 @@ using MockPJ.Utilities.CustomException;
 
 namespace MockPJ.Services
 {
-	public class UserService
+	public class AdminService
 	{
 		private readonly IUserRepository _userRepository;
 		private readonly IUserRoleRepository _roleRepository;
 		private readonly IMapper _mapper;
 
-		public UserService(IUserRepository userRepository, IUserRoleRepository roleRepository, IMapper mapper)
+		public AdminService(IUserRepository userRepository, IUserRoleRepository roleRepository, IMapper mapper)
 		{
 			_userRepository = userRepository;
 			_roleRepository = roleRepository;

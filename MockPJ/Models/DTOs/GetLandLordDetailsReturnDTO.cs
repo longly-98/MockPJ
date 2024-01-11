@@ -9,5 +9,6 @@
 		public string? PhoneNumber { get; set; }
 		public string? FacebookURL { get; set; }
 		public string? Address { get; set; }
+		public bool? Active { get; set; }
 	}
 }

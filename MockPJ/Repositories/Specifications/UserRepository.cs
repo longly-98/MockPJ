@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MockPJ.Models;
+using MockPJ.Models.DTOs;
 using MockPJ.Repositories.Interfaces;
 using System.Linq.Expressions;
 
@@ -21,6 +22,16 @@ namespace MockPJ.Repositories.Specifications
 		public async Task<User> GetLandLordDetailsAsync(Expression<Func<User, bool>> filter = null)
 		{
 			return await _context.Users.Include(u => u.Address).AsNoTracking().FirstOrDefaultAsync(filter);
+		}
+
+		public async Task<List<User>> GetLandLordStatisticList(Expression<Func<User, bool>> filter = null)
+		{
+			 return await _context.Users.Include(u => u.Address).Include(u => u.OwnHouses).ThenInclude(x => x.Rooms).AsNoTracking().Where(filter).ToListAsync();
+		}
+
+		public async Task<List<User>> GetLandLordList(Expression<Func<User, bool>> filter = null)
+		{
+			return await _context.Users.Include(u => u.Address).AsNoTracking().Where(filter).ToListAsync();
 		}
 	}
 }

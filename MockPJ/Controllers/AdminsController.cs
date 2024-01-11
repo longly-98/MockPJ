@@ -12,9 +12,9 @@ namespace MockPJ.Controllers
 	[ApiController]
 	public class AdminsController : ControllerBase
 	{
-		private readonly UserService _service;
+		private readonly AdminService _service;
 
-		public AdminsController(UserService service)
+		public AdminsController(AdminService service)
 		{
 			_service = service;
 		}

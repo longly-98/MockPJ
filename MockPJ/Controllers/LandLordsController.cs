@@ -10,9 +10,9 @@ namespace MockPJ.Controllers
 	[ApiController]
 	public class LandLordsController : ControllerBase
 	{
-		private readonly UserService _service;
+		private readonly AdminService _service;
 
-		public LandLordsController(UserService service)
+		public LandLordsController(AdminService service)
 		{
 			_service = service;
 		}

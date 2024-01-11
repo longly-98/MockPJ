@@ -23,6 +23,8 @@ namespace MockPJ.Models
 		public UserRole Role { get; set; }
 		public int? CreatedBy { get; set; }
 		public int? LastModifiedBy { get; set; }
+		public bool? Verified { get; set; } = false;
+		public DateTime? VerrifiedAt { get; set; }
 		public User Creator { get; set; }
 		public User Modifier { get; set; }
 		public ICollection<RoomHistory> CreateRoomHistories { get; set; }

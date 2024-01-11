@@ -37,6 +37,9 @@ namespace MockPJ.Utilities.AutoMapperProfile
 			CreateMap<CreateStaffDTO, User>().ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src.Username)).ReverseMap();
 			CreateMap<User, StaffReturnDTO>().ReverseMap();
 			CreateMap<User, AdminUpdateStaffDTO>().ReverseMap();
+
+			CreateMap<User, GetLandLordRegReturnDTO>()
+				.ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address.Addresses)).ReverseMap();
 		}
 	}
 }
