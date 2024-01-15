@@ -38,6 +38,21 @@ namespace MockPJ.Utilities.AutoMapperProfile
 			CreateMap<CreateStaffDTO, User>().ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src.Username)).ReverseMap();
 			CreateMap<User, StaffReturnDTO>().ReverseMap();
 			CreateMap<User, AdminUpdateStaffDTO>().ReverseMap();
+			CreateMap<ChangeUserRequestStatusRequestDTO, UserRequest>().ReverseMap();
+			CreateMap<User, GetStudentDetailsReturnDTO>().ReverseMap();
+
+			CreateMap<UserRequest, GetStudentOrdersReturnDTO>()
+				.ForMember(dest => dest.StudentDetails, opt => opt.MapFrom(src => src.User))
+				.ForMember(dest => dest.Status, opt => opt.MapFrom(src => Enum.GetName(src.Status))).ReverseMap();
+
+			CreateMap<Report, GetReportsListReturnDTO>()
+				.ForMember(dest => dest.StudentName, opt => opt.MapFrom(src => src.Student.DisplayName))
+				.ForMember(dest => dest.HouseName, opt => opt.MapFrom(src => src.House.HouseName)).ReverseMap();
+
+			CreateMap<House, GetReportedHousesListReturnDTO>()
+				.ForMember(dest => dest.LandLordName, opt => opt.MapFrom(src => src.LandLord.DisplayName))
+				.ForMember(dest => dest.LandLordActive, opt => opt.MapFrom(src => src.LandLord.Active))
+				.ForMember(dest => dest.ReportsCount, opt => opt.MapFrom(src => src.Reports.Count)).ReverseMap();
 
 			CreateMap<UserRequest, GetLandLordRequestsReturnDTO>()
 				.ForMember(dest => dest.LandLordDetails, opt => opt.MapFrom(src => src.User))

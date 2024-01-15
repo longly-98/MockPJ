@@ -14,7 +14,6 @@ namespace MockPJ.Controllers
 	[ApiController]
 	public class SessionController : ControllerBase
 	{
-		/*private readonly UserManager<User> _userManager;*/
 		private readonly BaseContext _context;
 		private readonly SessionService _sessionService;
 
@@ -23,87 +22,6 @@ namespace MockPJ.Controllers
 			_context = context;
 			_sessionService = sessionService;
 		}
-
-
-		/*		public SessionController(UserManager<User> userManager, BaseContext context, TokenService tokenService)
-				{
-					_userManager = userManager;
-					_context = context;
-					_tokenService = tokenService;
-				}
-		*/
-		/*		[HttpPost]
-				[Route("register")]
-				public async Task<ActionResult> Register(RegisterDTO req)
-				{
-					if (!ModelState.IsValid)
-					{
-						return BadRequest(ModelState);
-					}
-
-					var user = await _sessionService.RegisterAsync(req);
-					if (user != null)
-					{
-						var isInRole = await _userManager.IsInRoleAsync(user, req.Role);
-						if (!isInRole)
-						{
-							// If not in the role, add the user to the role
-							var result = await _userManager.AddToRoleAsync(user, req.Role);
-
-							if (result.Succeeded)
-							{
-								return CreatedAtAction(nameof(Register), new { email = user.Email, role = user.Role.RoleName }, req);
-							}
-
-							foreach (var error in result.Errors)
-							{
-								ModelState.AddModelError(error.Code, error.Description);
-							}
-						}
-					}
-
-					return BadRequest(ModelState);
-				}
-
-				[HttpPost]
-				[Route("login")]
-				public async Task<ActionResult<AuthResponse>> Login(AuthRequest req)
-				{
-					if (!ModelState.IsValid)
-					{
-						return BadRequest(ModelState);
-					}
-
-					var user = await _sessionService.LoginAsync(req.Email);
-
-					if (user != null)
-					{
-						var isInRole = await _userManager.IsInRoleAsync(user, user.Role.RoleName);
-						if (!isInRole)
-						{
-							var result = await _userManager.AddToRoleAsync(user, user.Role.RoleName);
-							if (result.Succeeded)
-							{
-								var isValidPwd = await _userManager.CheckPasswordAsync(user, req.Password);
-
-								if (!isValidPwd)
-								{
-									return BadRequest(ModelState);
-								}
-
-								var accessToken = _tokenService.CreateToken(user);
-
-								return Ok(new AuthResponse { Email = user.Email, Token = accessToken});
-							}
-
-							foreach (var error in result.Errors)
-							{
-								ModelState.AddModelError(error.Code, error.Description);
-							}
-						}
-					}
-					return BadRequest(ModelState);
-				}*/
 
 		[HttpPost]
 		[Route("register")]

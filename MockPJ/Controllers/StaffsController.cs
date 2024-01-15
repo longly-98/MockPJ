@@ -87,7 +87,7 @@ namespace MockPJ.Controllers
 		[Authorize(Roles = "Staff")]
 		[Route("landlords/{id}")]
 		[HttpPut]
-		public async Task<ActionResult<List<GetLandLordRequestsReturnDTO>>> ChangeLandLordStatus(int id, ChangeUserStatusRequestDTO req)
+		public async Task<ActionResult> ChangeLandLordStatus(int id, ChangeUserStatusRequestDTO req)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -119,6 +119,134 @@ namespace MockPJ.Controllers
 			try
 			{
 				return Ok(await _houseService.GetAllHouse(req, false));
+			}
+			catch (Exception e)
+			{
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
+			}
+		}
+
+		[Authorize(Roles = "Staff")]
+		[Route("landlords/requests/{RequestID}")]
+		[HttpPut]
+		public async Task<ActionResult> ChangeLandLordRequestStatus(int RequestID, ChangeUserRequestStatusRequestDTO req)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			try
+			{
+				await _service.ChangeLandLordRequestStatus(RequestID, req);
+				return Ok();
+			}
+			catch (Exception e)
+			{
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
+			}
+		}
+
+		[Authorize(Roles = "Staff")]
+		[Route("reports")]
+		[HttpGet]
+		public async Task<ActionResult<List<GetReportsListReturnDTO>>> GetAllReports([FromQuery] GetReportsListRequestDTO req)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			try
+			{
+				return Ok(await _service.GetReportsList(req));
+			}
+			catch (Exception e)
+			{
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
+			}
+		}
+
+		[Authorize(Roles = "Staff")]
+		[Route("reported-houses")]
+		[HttpGet]
+		public async Task<ActionResult<List<GetReportedHousesListReturnDTO>>> GetReportedHouses([FromQuery] GetReportedHousesListRequestDTO req)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			try
+			{
+				return Ok(await _service.GetReportsList(req));
+			}
+			catch (Exception e)
+			{
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
+			}
+		}
+
+		[Authorize(Roles = "Staff")]
+		[Route("houses/{HouseID}/reports")]
+		[HttpGet]
+		public async Task<ActionResult<List<GetReportsListReturnDTO>>> GetHouseReportsList(int HouseID, [FromQuery] GetReportsListRequestDTO req)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			try
+			{
+				return Ok(await _service.GetReportsListByHouse(HouseID, req));
+			}
+			catch (Exception e)
+			{
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
+			}
+		}
+
+		[Authorize(Roles = "Staff")]
+		[Route("students/orders")]
+		[HttpGet]
+		public async Task<ActionResult<List<GetStudentDetailsReturnDTO>>> GetStudentOrdersList([FromQuery] GetStudentOrdersRequestDTO req)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			try
+			{
+				return Ok(await _service.GetStudentOrdersList(req));
+			}
+			catch (Exception e)
+			{
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
+			}
+		}
+
+		[Authorize(Roles = "Staff")]
+		[Route("students/orders/{RequestID}")]
+		[HttpPut]
+		public async Task<ActionResult> ChangeStudentOrderStatus(int RequestID, ChangeUserRequestStatusRequestDTO req)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			try
+			{
+				await _service.ChangeStudentOrderStatus(RequestID, req);
+				return Ok();
 			}
 			catch (Exception e)
 			{

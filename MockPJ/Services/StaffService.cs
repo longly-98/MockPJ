@@ -14,16 +14,18 @@ namespace MockPJ.Services
 		private readonly IStatusRepository _statusRepository;
 		private readonly IUserRequestRepository _userRequestRepository;
 		private readonly IHouseRepository _houseRepository;
+		private readonly IReportRepository _reportRepository;
 		private readonly IMapper _mapper;
 
 		public StaffService(IUserRepository userRepository, IUserRoleRepository roleRepository, IStatusRepository statusRepository, IUserRequestRepository userRequestRepository,
-			 IHouseRepository houseRepository,IMapper mapper)
+			 IHouseRepository houseRepository, IReportRepository reportRepository, IMapper mapper)
 		{
 			_userRepository = userRepository;
 			_roleRepository = roleRepository;
 			_statusRepository = statusRepository;
 			_userRequestRepository = userRequestRepository;
 			_houseRepository = houseRepository;
+			_reportRepository = reportRepository;
 			_mapper = mapper;
 		}
 
@@ -110,9 +112,141 @@ namespace MockPJ.Services
 			{
 				user.Active = dto.Active;
 				await _userRepository.UpdateAsync(user);
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				throw new UpdateFailException("Fail to update landlord status");
+			}
+		}
+
+		public async Task ChangeLandLordRequestStatus(int id, ChangeUserRequestStatusRequestDTO dto)
+		{
+			var request = await _userRequestRepository.GetAsync(x => x.RequestID == id);
+
+			if (request == null)
+			{
+				throw new NotFoundException("Request not found");
+			}
+
+			var landlord = await _userRepository.GetAsync(x => x.UserID == request.UserID);
+			if (landlord == null)
+			{
+				throw new NotFoundException("LandLord of this request not found");
+			}
+
+			try
+			{
+				request.Status = dto.Status;
+				await _userRequestRepository.UpdateAsync(request);
+
+				if (dto.Status == RequestStatus.Resolved)
+				{
+					landlord.Verified = true;
+					landlord.VerrifiedAt = DateTime.UtcNow;
+					await _userRepository.UpdateAsync(landlord);
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new UpdateFailException("Fail to update landlord request");
+			}
+		}
+
+		public async Task<List<GetReportsListReturnDTO>> GetReportsList(GetReportsListRequestDTO req)
+		{
+			var list = await _reportRepository.GetListWithHouseAsync(x => 
+				(!string.IsNullOrEmpty(req.Keywords) ? x.House.HouseName.Contains(req.Keywords) || x.Student.DisplayName.Contains(req.Keywords) : true));
+
+			if (req.SortBy != null && req.SortType != null)
+			{
+				var propertyInfo = typeof(Report).GetProperty(req.SortBy);
+				if (propertyInfo != null)
+				{
+					var orderedList = req.SortType?.ToLower() == "desc" ? list.OrderByDescending(x => propertyInfo?.GetValue(x, null)) : list.OrderBy(x => propertyInfo.GetValue(x, null));
+					list = orderedList.ToList();
+				}
+			}
+
+			return _mapper.Map<List<GetReportsListReturnDTO>>(list.Skip((req.Page - 1) * req.PageSize).Take(req.PageSize));
+		}
+
+		public async Task<List<GetReportedHousesListReturnDTO>> GetReportsList(GetReportedHousesListRequestDTO req)
+		{
+			var list = await _houseRepository.GetReportedListWithMoreInfoAsync(x =>
+				(!string.IsNullOrEmpty(req.Keywords) ? x.HouseName.Contains(req.Keywords) || x.LandLord.DisplayName.Contains(req.Keywords) : true) &&
+				x.Reports.Count > 0
+			);
+
+			if (req.SortBy != null && req.SortType != null)
+			{
+				var propertyInfo = typeof(UserRequest).GetProperty(req.SortBy);
+				if (propertyInfo != null)
+				{
+					var orderedList = req.SortType?.ToLower() == "desc" ? list.OrderByDescending(x => propertyInfo?.GetValue(x, null)) : list.OrderBy(x => propertyInfo.GetValue(x, null));
+					list = orderedList.ToList();
+				}
+			}
+
+			return _mapper.Map<List<GetReportedHousesListReturnDTO>>(list.Skip((req.Page - 1) * req.PageSize).Take(req.PageSize));
+		}
+
+		public async Task<List<GetReportsListReturnDTO>> GetReportsListByHouse(int id, GetReportsListRequestDTO req)
+		{
+			var list = await _reportRepository.GetListWithHouseAsync(x =>
+				(!string.IsNullOrEmpty(req.Keywords) ? x.ReportContent.Contains(req.Keywords) : true) &&
+				x.HouseID == id
+			);
+
+			if (req.SortBy != null && req.SortType != null)
+			{
+				var propertyInfo = typeof(Report).GetProperty(req.SortBy);
+				if (propertyInfo != null)
+				{
+					var orderedList = req.SortType?.ToLower() == "desc" ? list.OrderByDescending(x => propertyInfo?.GetValue(x, null)) : list.OrderBy(x => propertyInfo.GetValue(x, null));
+					list = orderedList.ToList();
+				}
+			}
+
+			return _mapper.Map<List<GetReportsListReturnDTO>>(list.Skip((req.Page - 1) * req.PageSize).Take(req.PageSize));
+		}
+
+		public async Task<List<GetStudentOrdersReturnDTO>> GetStudentOrdersList(GetStudentOrdersRequestDTO req)
+		{
+			var roleStudent = await _roleRepository.GetAsync(x => x.RoleName == "Student");
+			var list = await _userRequestRepository.GetUserRequestsList(x =>
+				(!string.IsNullOrEmpty(req.Keywords) ? x.User.DisplayName.Contains(req.Keywords) : true) && x.User.RoleID == roleStudent.RoleID && x.RequestType == RequestType.StudentRequest
+			);
+
+			if (req.SortBy != null && req.SortType != null)
+			{
+				var propertyInfo = typeof(UserRequest).GetProperty(req.SortBy);
+				if (propertyInfo != null)
+				{
+					var orderedList = req.SortType?.ToLower() == "desc" ? list.OrderByDescending(x => propertyInfo?.GetValue(x, null)) : list.OrderBy(x => propertyInfo.GetValue(x, null));
+					list = orderedList.ToList();
+				}
+			}
+
+			return _mapper.Map<List<GetStudentOrdersReturnDTO>>(list.Skip((req.Page - 1) * req.PageSize).Take(req.PageSize));
+		}
+
+		public async Task ChangeStudentOrderStatus(int id, ChangeUserRequestStatusRequestDTO dto)
+		{
+			var request = await _userRequestRepository.GetAsync(x => x.RequestID == id);
+
+			if (request == null)
+			{
+				throw new NotFoundException("Request not found");
+			}
+
+			try
+			{
+				request.Status = dto.Status;
+				await _userRequestRepository.UpdateAsync(request);
+			}
+			catch (Exception ex)
+			{
+				throw new UpdateFailException("Fail to update order");
 			}
 		}
 	}

@@ -217,6 +217,12 @@ namespace MockPJ.Models
 				new UserRequest { RequestID = 3, UserID = 4, Status = RequestStatus.Pending, Description = "cheap water", RequestType = RequestType.StudentRequest }
 			);
 
+			modelBuilder.Entity<Report>().HasData(
+				new Report { ReportID = 1, StudentID = 4, HouseID = 1, ReportContent = "no no no" },
+				new Report { ReportID = 2, StudentID = 4, HouseID = 2, ReportContent = "not good" },
+				new Report { ReportID = 3, StudentID = 4, HouseID = 3, ReportContent = "won't return" }
+			);
+
 			base.OnModelCreating(modelBuilder);
 		}
 	}
