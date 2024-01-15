@@ -20,7 +20,7 @@ namespace MockPJ.Controllers
 		}
 
 		[HttpGet]
-		public async Task<ActionResult<List<GetHousesReturnDTO>>> GetAllHouses([FromQuery] GetHousesRequestDTO req)
+		public async Task<ActionResult<List<GetHousesReturnDTO>>> GetAllActiveHouses([FromQuery] GetHousesRequestDTO req)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -33,7 +33,8 @@ namespace MockPJ.Controllers
 			}
 			catch (Exception e)
 			{
-				return BadRequest(e.Message);
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
 			}
 		}
 
@@ -51,7 +52,8 @@ namespace MockPJ.Controllers
 			}
 			catch (Exception e)
 			{
-				return BadRequest(e.Message);
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
 			}
 		}
 	}

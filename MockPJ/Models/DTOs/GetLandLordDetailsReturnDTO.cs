@@ -10,5 +10,7 @@
 		public string? FacebookURL { get; set; }
 		public string? Address { get; set; }
 		public bool? Active { get; set; }
+		public bool? Verified { get; set; }
+		public DateTime? VerifiedAt { get; set; }
 	}
 }

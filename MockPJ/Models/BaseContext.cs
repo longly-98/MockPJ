@@ -21,7 +21,8 @@ namespace MockPJ.Models
 		public DbSet<RoomType> RoomTypes { get; set; }
 		public DbSet<Status> Statuses { get; set; }
 		public DbSet<UserRole> UserRoles { get; set; }
-		public DbSet<Village> Vill { get; set; }
+		public DbSet<Village> Villages { get; set; }
+		public DbSet<UserRequest> UserRequests { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -51,6 +52,8 @@ namespace MockPJ.Models
 
 			modelBuilder.Entity<User>().HasMany<User>(u => u.CreateUsers).WithOne(u => u.Creator).HasForeignKey(u => u.CreatedBy);
 			modelBuilder.Entity<User>().HasMany<User>(u => u.ModifyUsers).WithOne(u => u.Modifier).HasForeignKey(u => u.LastModifiedBy);
+
+			modelBuilder.Entity<User>().HasMany<UserRequest>(u => u.UserRequests).WithOne(r => r.User).HasForeignKey(r => r.UserID);
 
 			modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
 			modelBuilder.Entity<User>().HasIndex(u => u.DisplayName).IsUnique();
@@ -206,6 +209,12 @@ namespace MockPJ.Models
 				new Rate { RateID = 2, HouseID = 1, Comment = "good", LandLordReply = "thanks", Star = 5, StudentID = 4, CreatedBy = 4 },
 				new Rate { RateID = 3, HouseID = 2, Comment = "good", LandLordReply = "thanks", Star = 5, StudentID = 4, CreatedBy = 4 },
 				new Rate { RateID = 4, HouseID = 3, Comment = "good", LandLordReply = "thanks", Star = 5, StudentID = 4, CreatedBy = 4 }
+			);
+
+			modelBuilder.Entity<UserRequest>().HasData(
+				new UserRequest { RequestID = 1, UserID = 3, Status = RequestStatus.Pending, RequestType = RequestType.Register },
+				new UserRequest { RequestID = 2, UserID = 4, Status = RequestStatus.Pending, Description = "have AC and near school", RequestType = RequestType.StudentRequest },
+				new UserRequest { RequestID = 3, UserID = 4, Status = RequestStatus.Pending, Description = "cheap water", RequestType = RequestType.StudentRequest }
 			);
 
 			base.OnModelCreating(modelBuilder);

@@ -22,12 +22,13 @@ namespace MockPJ.Services
 			_mapper = mapper;
 		}
 
-		public async Task<List<GetHousesReturnDTO>> GetAllHouse(GetHousesRequestDTO req)
+		public async Task<List<GetHousesReturnDTO>> GetAllHouse(GetHousesRequestDTO req, bool CheckLandLord = true)
 		{
 			var list = await _houseRepository.GetListWithMoreInfoAsync(x =>
 				(!string.IsNullOrEmpty(req.Keywords) ? x.HouseName.Contains(req.Keywords) : true) &&
 				(req.CampusID.HasValue ? x.CampusID == req.CampusID : true) &&
-				(req.VillageID.HasValue ? x.VillageID == req.VillageID : true)
+				(req.VillageID.HasValue ? x.VillageID == req.VillageID : true) && 
+				(CheckLandLord ? x.LandLord.Active : true)
 			);
 
 			if (req.SortBy != null && req.SortType != null)

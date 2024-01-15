@@ -65,6 +65,7 @@ namespace MockPJ
 			builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 			builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 			builder.Services.AddScoped<IStatusRepository, StatusRepository>();
+			builder.Services.AddScoped<IUserRequestRepository, UserRequestRepository>();
 
 			builder.Services.AddScoped<TokenService, TokenService>();
 			builder.Services.AddScoped<SessionService, SessionService>();

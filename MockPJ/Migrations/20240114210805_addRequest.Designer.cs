@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MockPJ.Models;
 
@@ -11,9 +12,11 @@ using MockPJ.Models;
 namespace MockPJ.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    partial class BaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240114210805_addRequest")]
+    partial class addRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,21 +56,21 @@ namespace MockPJ.Migrations
                         {
                             AddressID = 1,
                             Addresses = "so 1, ngách 1, ngõ 1, đường 1",
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4041),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1103),
                             GoogleMapLocation = "111111,1111111"
                         },
                         new
                         {
                             AddressID = 2,
                             Addresses = "so 2, ngách 1, ngõ 1, đường 1",
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4044),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1108),
                             GoogleMapLocation = "111111,1111111"
                         },
                         new
                         {
                             AddressID = 3,
                             Addresses = "so 3, ngách 1, ngõ 1, đường 1",
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4045),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1110),
                             GoogleMapLocation = "111111,1111111"
                         });
                 });
@@ -105,7 +108,7 @@ namespace MockPJ.Migrations
                             CampusId = 1,
                             AddressID = 1,
                             CampusName = "Campus A",
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4142)
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1239)
                         });
                 });
 
@@ -141,7 +144,7 @@ namespace MockPJ.Migrations
                         {
                             CommuneID = 1,
                             CommuneName = "Phuong Lien",
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4266),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1351),
                             DistrictID = 1
                         });
                 });
@@ -172,7 +175,7 @@ namespace MockPJ.Migrations
                         new
                         {
                             DistrictID = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4201),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1306),
                             DistrictName = "Dong Da"
                         });
                 });
@@ -247,7 +250,7 @@ namespace MockPJ.Migrations
                             AddressID = 1,
                             CampusID = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4370),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1503),
                             HouseName = "House A",
                             Information = "AC, Hot water",
                             LandLordID = 3,
@@ -261,7 +264,7 @@ namespace MockPJ.Migrations
                             AddressID = 2,
                             CampusID = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4379),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1514),
                             HouseName = "House B",
                             Information = "AC, Hot water",
                             LandLordID = 3,
@@ -275,7 +278,7 @@ namespace MockPJ.Migrations
                             AddressID = 3,
                             CampusID = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4381),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1517),
                             HouseName = "House C",
                             Information = "AC, Hot water",
                             LandLordID = 3,
@@ -326,49 +329,49 @@ namespace MockPJ.Migrations
                         new
                         {
                             ImageID = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4443),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1593),
                             HouseID = 1,
                             ImageLink = "link"
                         },
                         new
                         {
                             ImageID = 2,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4446),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1596),
                             HouseID = 1,
                             ImageLink = "link"
                         },
                         new
                         {
                             ImageID = 3,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4447),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1597),
                             HouseID = 2,
                             ImageLink = "link"
                         },
                         new
                         {
                             ImageID = 4,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4448),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1599),
                             HouseID = 2,
                             ImageLink = "link"
                         },
                         new
                         {
                             ImageID = 5,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4453),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1601),
                             HouseID = 3,
                             ImageLink = "link"
                         },
                         new
                         {
                             ImageID = 6,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4454),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1652),
                             HouseID = 3,
                             ImageLink = "link"
                         },
                         new
                         {
                             ImageID = 7,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4455),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1653),
                             HouseID = 3,
                             ImageLink = "link"
                         });
@@ -427,7 +430,7 @@ namespace MockPJ.Migrations
                             RateID = 1,
                             Comment = "good",
                             CreatedBy = 4,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4804),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2052),
                             HouseID = 1,
                             LandLordReply = "thanks",
                             Star = 5,
@@ -438,7 +441,7 @@ namespace MockPJ.Migrations
                             RateID = 2,
                             Comment = "good",
                             CreatedBy = 4,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4808),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2058),
                             HouseID = 1,
                             LandLordReply = "thanks",
                             Star = 5,
@@ -449,7 +452,7 @@ namespace MockPJ.Migrations
                             RateID = 3,
                             Comment = "good",
                             CreatedBy = 4,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4810),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2060),
                             HouseID = 2,
                             LandLordReply = "thanks",
                             Star = 5,
@@ -460,7 +463,7 @@ namespace MockPJ.Migrations
                             RateID = 4,
                             Comment = "good",
                             CreatedBy = 4,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4812),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2061),
                             HouseID = 3,
                             LandLordReply = "thanks",
                             Star = 5,
@@ -509,6 +512,67 @@ namespace MockPJ.Migrations
                     b.HasIndex("StudentID");
 
                     b.ToTable("Reports");
+                });
+
+            modelBuilder.Entity("MockPJ.Models.Request", b =>
+                {
+                    b.Property<int>("RequestID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestID"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RequestType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("RequestID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Request");
+
+                    b.HasData(
+                        new
+                        {
+                            RequestID = 1,
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2111),
+                            RequestType = 0,
+                            Status = 0,
+                            UserID = 3
+                        },
+                        new
+                        {
+                            RequestID = 2,
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2114),
+                            Description = "have AC and near school",
+                            RequestType = 1,
+                            Status = 0,
+                            UserID = 4
+                        },
+                        new
+                        {
+                            RequestID = 3,
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2116),
+                            Description = "cheap water",
+                            RequestType = 1,
+                            Status = 0,
+                            UserID = 4
+                        });
                 });
 
             modelBuilder.Entity("MockPJ.Models.Room", b =>
@@ -583,7 +647,7 @@ namespace MockPJ.Migrations
                             RoomID = 1,
                             Area = "20m2",
                             BuildingNumber = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4655),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1901),
                             CurrentAmountOfPeople = 0,
                             FloorNumber = 1,
                             HouseID = 1,
@@ -598,7 +662,7 @@ namespace MockPJ.Migrations
                             RoomID = 2,
                             Area = "20m2",
                             BuildingNumber = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4663),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1915),
                             CurrentAmountOfPeople = 1,
                             FloorNumber = 1,
                             HouseID = 1,
@@ -613,7 +677,7 @@ namespace MockPJ.Migrations
                             RoomID = 3,
                             Area = "25m2",
                             BuildingNumber = 2,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4678),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1929),
                             CurrentAmountOfPeople = 0,
                             FloorNumber = 1,
                             HouseID = 2,
@@ -628,7 +692,7 @@ namespace MockPJ.Migrations
                             RoomID = 4,
                             Area = "28m2",
                             BuildingNumber = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4680),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1931),
                             CurrentAmountOfPeople = 0,
                             FloorNumber = 1,
                             HouseID = 2,
@@ -643,7 +707,7 @@ namespace MockPJ.Migrations
                             RoomID = 5,
                             Area = "40m2",
                             BuildingNumber = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4682),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1933),
                             CurrentAmountOfPeople = 0,
                             FloorNumber = 1,
                             HouseID = 3,
@@ -734,35 +798,35 @@ namespace MockPJ.Migrations
                         new
                         {
                             ImageID = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4748),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1997),
                             ImageLink = "link",
                             RoomID = 1
                         },
                         new
                         {
                             ImageID = 2,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4751),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2004),
                             ImageLink = "link",
                             RoomID = 2
                         },
                         new
                         {
                             ImageID = 3,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4752),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2005),
                             ImageLink = "link",
                             RoomID = 3
                         },
                         new
                         {
                             ImageID = 4,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4753),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2006),
                             ImageLink = "link",
                             RoomID = 4
                         },
                         new
                         {
                             ImageID = 5,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4754),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(2008),
                             ImageLink = "link",
                             RoomID = 5
                         });
@@ -794,25 +858,25 @@ namespace MockPJ.Migrations
                         new
                         {
                             RoomTypeID = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4600),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1835),
                             RoomTypeName = "Shared hostel"
                         },
                         new
                         {
                             RoomTypeID = 2,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4601),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1837),
                             RoomTypeName = "Apartment"
                         },
                         new
                         {
                             RoomTypeID = 3,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4603),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1839),
                             RoomTypeName = "Mini apartment"
                         },
                         new
                         {
                             RoomTypeID = 4,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4605),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1840),
                             RoomTypeName = "Homestays"
                         });
                 });
@@ -843,13 +907,13 @@ namespace MockPJ.Migrations
                         new
                         {
                             StatusID = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4509),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1722),
                             StatusName = "Available"
                         },
                         new
                         {
                             StatusID = 2,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4512),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1725),
                             StatusName = "Not Available"
                         });
                 });
@@ -945,10 +1009,10 @@ namespace MockPJ.Migrations
                         {
                             UserID = 1,
                             Active = true,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(3778),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 13, DateTimeKind.Utc).AddTicks(9543),
                             DisplayName = "Admin",
                             Email = "admin@gmail.com",
-                            Password = "$2a$11$j/CmF8QvmZMLGDaCdm3vYO29E7Y/HbGsRixnckUoL8hrzDyMQe6I2",
+                            Password = "$2a$11$npJQLMKo9d5tWsfJVw6nb.Nj5YpCgFSPR/DFKOc0IPfhRjBfb2CaW",
                             PhoneNumber = "0123456789",
                             RoleID = 1,
                             Verified = false
@@ -957,10 +1021,10 @@ namespace MockPJ.Migrations
                         {
                             UserID = 2,
                             Active = true,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(3791),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 13, DateTimeKind.Utc).AddTicks(9555),
                             DisplayName = "Staff",
                             Email = "staff@gmail.com",
-                            Password = "$2a$11$j/CmF8QvmZMLGDaCdm3vYO29E7Y/HbGsRixnckUoL8hrzDyMQe6I2",
+                            Password = "$2a$11$npJQLMKo9d5tWsfJVw6nb.Nj5YpCgFSPR/DFKOc0IPfhRjBfb2CaW",
                             PhoneNumber = "0123456789",
                             RoleID = 2,
                             Verified = false
@@ -969,10 +1033,10 @@ namespace MockPJ.Migrations
                         {
                             UserID = 3,
                             Active = true,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(3794),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 13, DateTimeKind.Utc).AddTicks(9557),
                             DisplayName = "LandLord",
                             Email = "landlord@gmail.com",
-                            Password = "$2a$11$j/CmF8QvmZMLGDaCdm3vYO29E7Y/HbGsRixnckUoL8hrzDyMQe6I2",
+                            Password = "$2a$11$npJQLMKo9d5tWsfJVw6nb.Nj5YpCgFSPR/DFKOc0IPfhRjBfb2CaW",
                             PhoneNumber = "0123456789",
                             RoleID = 3,
                             Verified = false
@@ -981,74 +1045,13 @@ namespace MockPJ.Migrations
                         {
                             UserID = 4,
                             Active = true,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(3796),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 13, DateTimeKind.Utc).AddTicks(9558),
                             DisplayName = "Student",
                             Email = "student@gmail.com",
-                            Password = "$2a$11$j/CmF8QvmZMLGDaCdm3vYO29E7Y/HbGsRixnckUoL8hrzDyMQe6I2",
+                            Password = "$2a$11$npJQLMKo9d5tWsfJVw6nb.Nj5YpCgFSPR/DFKOc0IPfhRjBfb2CaW",
                             PhoneNumber = "0123456789",
                             RoleID = 4,
                             Verified = false
-                        });
-                });
-
-            modelBuilder.Entity("MockPJ.Models.UserRequest", b =>
-                {
-                    b.Property<int>("RequestID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestID"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("RequestType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("RequestID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("UserRequests");
-
-                    b.HasData(
-                        new
-                        {
-                            RequestID = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4868),
-                            RequestType = 0,
-                            Status = 0,
-                            UserID = 3
-                        },
-                        new
-                        {
-                            RequestID = 2,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4871),
-                            Description = "have AC and near school",
-                            RequestType = 1,
-                            Status = 0,
-                            UserID = 4
-                        },
-                        new
-                        {
-                            RequestID = 3,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4872),
-                            Description = "cheap water",
-                            RequestType = 1,
-                            Status = 0,
-                            UserID = 4
                         });
                 });
 
@@ -1078,25 +1081,25 @@ namespace MockPJ.Migrations
                         new
                         {
                             RoleID = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 35, 923, DateTimeKind.Utc).AddTicks(964),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 2, 875, DateTimeKind.Utc).AddTicks(1747),
                             RoleName = "Admin"
                         },
                         new
                         {
                             RoleID = 2,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 35, 923, DateTimeKind.Utc).AddTicks(968),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 2, 875, DateTimeKind.Utc).AddTicks(1752),
                             RoleName = "Staff"
                         },
                         new
                         {
                             RoleID = 3,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 35, 923, DateTimeKind.Utc).AddTicks(969),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 2, 875, DateTimeKind.Utc).AddTicks(1753),
                             RoleName = "LandLord"
                         },
                         new
                         {
                             RoleID = 4,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 35, 923, DateTimeKind.Utc).AddTicks(969),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 2, 875, DateTimeKind.Utc).AddTicks(1754),
                             RoleName = "Student"
                         });
                 });
@@ -1133,7 +1136,7 @@ namespace MockPJ.Migrations
                         {
                             VillageId = 1,
                             CommuneID = 1,
-                            CreatedDate = new DateTime(2024, 1, 14, 21, 29, 36, 61, DateTimeKind.Utc).AddTicks(4323),
+                            CreatedDate = new DateTime(2024, 1, 14, 21, 8, 3, 14, DateTimeKind.Utc).AddTicks(1443),
                             VillageName = "Village A"
                         });
                 });
@@ -1280,6 +1283,17 @@ namespace MockPJ.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("MockPJ.Models.Request", b =>
+                {
+                    b.HasOne("MockPJ.Models.User", "User")
+                        .WithMany("UserRequests")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MockPJ.Models.Room", b =>
                 {
                     b.HasOne("MockPJ.Models.User", "Creator")
@@ -1386,17 +1400,6 @@ namespace MockPJ.Migrations
                     b.Navigation("Modifier");
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("MockPJ.Models.UserRequest", b =>
-                {
-                    b.HasOne("MockPJ.Models.User", "User")
-                        .WithMany("UserRequests")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MockPJ.Models.Village", b =>

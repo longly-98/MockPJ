@@ -31,7 +31,8 @@ namespace MockPJ.Controllers
 			}
 			catch (Exception e)
 			{
-				return BadRequest(e.Message);
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
 			}
 		}
 
@@ -49,7 +50,8 @@ namespace MockPJ.Controllers
 			}
 			catch (Exception e)
 			{
-				return BadRequest(e.Message);
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
 			}
 		}
 	}

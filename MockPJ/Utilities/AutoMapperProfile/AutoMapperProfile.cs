@@ -2,6 +2,7 @@
 using Elfie.Serialization;
 using MockPJ.Models;
 using MockPJ.Models.DTOs;
+using AutoMapper.Extensions.EnumMapping;
 
 namespace MockPJ.Utilities.AutoMapperProfile
 {
@@ -38,8 +39,9 @@ namespace MockPJ.Utilities.AutoMapperProfile
 			CreateMap<User, StaffReturnDTO>().ReverseMap();
 			CreateMap<User, AdminUpdateStaffDTO>().ReverseMap();
 
-			CreateMap<User, GetLandLordRegReturnDTO>()
-				.ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address.Addresses)).ReverseMap();
+			CreateMap<UserRequest, GetLandLordRequestsReturnDTO>()
+				.ForMember(dest => dest.LandLordDetails, opt => opt.MapFrom(src => src.User))
+				.ForMember(dest => dest.Status, opt => opt.MapFrom(src => Enum.GetName(src.Status))).ReverseMap();
 		}
 	}
 }

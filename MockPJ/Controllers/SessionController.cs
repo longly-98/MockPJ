@@ -119,9 +119,10 @@ namespace MockPJ.Controllers
 				var token = await _sessionService.RegisterAsync(req);
 				return Ok(new AuthResponse { Email = req.Email, Token = token});
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
-				return BadRequest("Something went wrong");
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
 			}
 		}
 
@@ -138,9 +139,10 @@ namespace MockPJ.Controllers
 				return Ok(new AuthResponse { Email = req.Email, Token = token });
 			}
 
-			catch (Exception)
+			catch (Exception e)
 			{
-				return BadRequest("Something went wrong");
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
 			}
 		}
 
@@ -163,9 +165,10 @@ namespace MockPJ.Controllers
 				return Ok();
 			}
 
-			catch (Exception)
+			catch (Exception e)
 			{
-				return BadRequest("Something went wrong");
+				var msg = e.InnerException != null ? e.InnerException : e;
+				return BadRequest(msg.Message);
 			}
 		}
 	}
