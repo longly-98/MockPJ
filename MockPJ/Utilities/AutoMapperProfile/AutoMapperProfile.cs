@@ -59,6 +59,10 @@ namespace MockPJ.Utilities.AutoMapperProfile
 				.ForMember(dest => dest.Status, opt => opt.MapFrom(src => Enum.GetName(src.Status))).ReverseMap();
 
 			CreateMap<CreateAddressDTO, Address>().ReverseMap();
+			CreateMap<CreateImageRequestDTO, HouseImage>().ReverseMap();
+			CreateMap<CreateImageRequestDTO, RoomImage>().ReverseMap();
+			CreateMap<CreateRoomRequestDTO, Room>().ReverseMap();
+			CreateMap<CreateHouseRequestDTO, House>().ReverseMap();
 			CreateMap<CreateLandLordRegistrationDTO, User>()
 				.ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address)).ReverseMap();
 		}

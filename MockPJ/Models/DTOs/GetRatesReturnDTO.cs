@@ -8,5 +8,6 @@
 		public string? LandLordReply { get; set; }
 		public string StudentName { get; set; }
 		public DateTime CreatedDate { get; set; }
+		public DateTime? LastModifiedDate { get; set;}
 	}
 }

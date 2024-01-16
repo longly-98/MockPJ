@@ -68,6 +68,11 @@ namespace MockPJ
 			builder.Services.AddScoped<IUserRequestRepository, UserRequestRepository>();
 			builder.Services.AddScoped<IReportRepository, ReportRepository>();
 			builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+			builder.Services.AddScoped<IHouseImageRepository, HouseImageRepository>();
+			builder.Services.AddScoped<IVillageRepository, VillageRepository>();
+			builder.Services.AddScoped<ICampusRepository, CampusRepository>();
+			builder.Services.AddScoped<IRoomImageRepository, RoomImageRepository>();
+			builder.Services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
 
 			builder.Services.AddScoped<TokenService, TokenService>();
 			builder.Services.AddScoped<SessionService, SessionService>();

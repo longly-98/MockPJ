@@ -19,7 +19,7 @@ namespace MockPJ.Controllers
 		}
 
 		[HttpGet]
-		public async Task<ActionResult<List<GetHousesReturnDTO>>> GetAllRatesByHouse([FromQuery] int houseId)
+		public async Task<ActionResult<List<GetRatesReturnDTO>>> GetAllRatesByHouse([FromQuery] int houseId)
 		{
 			if (!ModelState.IsValid)
 			{

@@ -16,7 +16,7 @@ namespace MockPJ.Repositories.Specifications
 
 		public async Task<List<Room>> GetListWithMoreInfoAsync(Expression<Func<Room, bool>> filter = null)
 		{
-			return await _context.Rooms.Include(x => x.Status).Include(x => x.RoomType).AsNoTracking().Where(filter).ToListAsync();
+			return await _context.Rooms.Include(x => x.Status).Include(x => x.RoomType).Include(x => x.RoomHistories).Include(x => x.RoomImages).AsNoTracking().Where(filter).ToListAsync();
 		}
 
 		public async Task<Room> GetDetailsAsync(Expression<Func<Room, bool>> filter = null)
