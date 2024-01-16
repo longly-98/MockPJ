@@ -9,17 +9,19 @@ using MockPJ.Utilities;
 
 namespace MockPJ.Services
 {
-	public class SessionService
+	public class SessionService : BaseService
 	{
 		private readonly IUserRepository userRepository;
 		private readonly IMapper mapper;
 		private readonly TokenService tokenService;
+		private readonly IHttpContextAccessor _httpContextAccessor;
 
-		public SessionService(IUserRepository userRepository, IMapper mapper, TokenService tokenService)
+		public SessionService(IUserRepository userRepository, IMapper mapper, TokenService tokenService, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
 		{
 			this.userRepository = userRepository;
 			this.mapper = mapper;
 			this.tokenService = tokenService;
+			_httpContextAccessor = httpContextAccessor;
 		}
 
 		public async Task<string> RegisterAsync(RegisterDTO register)

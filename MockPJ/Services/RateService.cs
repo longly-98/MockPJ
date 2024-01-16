@@ -9,7 +9,7 @@ namespace MockPJ.Services
 {
 	public class RateService : BaseService
 	{
-		private readonly IRateRepository _rateRepository;
+		private readonly IRateRepository _rateRepository;	
 		private readonly IHouseRepository _houseRepository;
 		private readonly IUserRepository _userRepository;
 		private readonly IMapper _mapper;

@@ -7,7 +7,7 @@ using MockPJ.Utilities.CustomException;
 
 namespace MockPJ.Services
 {
-	public class StaffService
+	public class StaffService : BaseService
 	{
 		private readonly IUserRepository _userRepository;
 		private readonly IUserRoleRepository _roleRepository;
@@ -16,9 +16,10 @@ namespace MockPJ.Services
 		private readonly IHouseRepository _houseRepository;
 		private readonly IReportRepository _reportRepository;
 		private readonly IMapper _mapper;
+		private readonly IHttpContextAccessor _httpContextAccessor;
 
 		public StaffService(IUserRepository userRepository, IUserRoleRepository roleRepository, IStatusRepository statusRepository, IUserRequestRepository userRequestRepository,
-			 IHouseRepository houseRepository, IReportRepository reportRepository, IMapper mapper)
+			 IHouseRepository houseRepository, IReportRepository reportRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
 		{
 			_userRepository = userRepository;
 			_roleRepository = roleRepository;
@@ -27,6 +28,7 @@ namespace MockPJ.Services
 			_houseRepository = houseRepository;
 			_reportRepository = reportRepository;
 			_mapper = mapper;
+			_httpContextAccessor = httpContextAccessor;
 		}
 
 		public async Task<List<GetLandLordStatisticReturnDTO>> GetLandLordStatisticList(GetLandLordListRequestDTO req)

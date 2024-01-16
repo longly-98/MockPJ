@@ -10,5 +10,6 @@ namespace MockPJ.Repositories.Interfaces
 		Task<House> GetWithMoreInfoAsync(Expression<Func<House, bool>> filter = null);
 		Task<List<House>> GetLandLordHousesList(Expression<Func<House, bool>> filter = null);
 		Task<List<House>> GetReportedListWithMoreInfoAsync(Expression<Func<House, bool>> filter = null);
+		Task<List<House>> GetHousesListWithRoomsAsync(Expression<Func<House, bool>> filter = null);
 	}
 }

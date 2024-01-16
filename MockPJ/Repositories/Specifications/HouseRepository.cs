@@ -34,5 +34,10 @@ namespace MockPJ.Repositories.Specifications
 		{
 			return await _context.Houses.Include(h => h.Address).Include(h => h.Village).Include(h => h.Campus).Include(h => h.LandLord).Include(h => h.HouseImages).Include(h => h.Reports).AsNoTracking().Where(filter).ToListAsync();
 		}
+
+		public async Task<List<House>> GetHousesListWithRoomsAsync(Expression<Func<House, bool>> filter = null)
+		{
+			return await _context.Houses.Include(h => h.Address).Include(h => h.Village).Include(h => h.Campus).Include(h => h.LandLord).Include(h => h.HouseImages).Include(h => h.Rooms).ThenInclude(r => r.Status).AsNoTracking().Where(filter).ToListAsync();
+		}
 	}
 }

@@ -4,15 +4,17 @@ using MockPJ.Repositories.Interfaces;
 
 namespace MockPJ.Services
 {
-	public class RoomService
+	public class RoomService : BaseService
 	{
 		private readonly IRoomRepository _roomRepository;
 		private readonly IMapper _mapper;
+		private readonly IHttpContextAccessor _httpContextAccessor;
 
-		public RoomService(IRoomRepository roomRepository, IMapper mapper)
+		public RoomService(IRoomRepository roomRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
 		{
 			_roomRepository = roomRepository;
 			_mapper = mapper;
+			_httpContextAccessor = httpContextAccessor;
 		}
 
 		public async Task<List<GetRoomsReturnDTO>> GetHouseRooms(int id)

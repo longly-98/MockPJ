@@ -11,15 +11,17 @@ using System.Threading;
 
 namespace MockPJ.Services
 {
-	public class HouseService
+	public class HouseService : BaseService
 	{
 		private readonly IHouseRepository _houseRepository;
 		private readonly IMapper _mapper;
+		private readonly IHttpContextAccessor _httpContextAccessor;
 
-		public HouseService(IHouseRepository houseRepository, IMapper mapper)
+		public HouseService(IHouseRepository houseRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
 		{
 			_houseRepository = houseRepository;
 			_mapper = mapper;
+			_httpContextAccessor = httpContextAccessor;
 		}
 
 		public async Task<List<GetHousesReturnDTO>> GetAllHouse(GetHousesRequestDTO req, bool CheckLandLord = true)

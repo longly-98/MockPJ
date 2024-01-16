@@ -6,24 +6,19 @@ using MockPJ.Utilities.CustomException;
 
 namespace MockPJ.Services
 {
-	public class AdminService
+	public class AdminService : BaseService
 	{
 		private readonly IUserRepository _userRepository;
 		private readonly IUserRoleRepository _roleRepository;
 		private readonly IMapper _mapper;
+		private readonly IHttpContextAccessor _httpContextAccessor;
 
-		public AdminService(IUserRepository userRepository, IUserRoleRepository roleRepository, IMapper mapper)
+		public AdminService(IUserRepository userRepository, IUserRoleRepository roleRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
 		{
 			_userRepository = userRepository;
 			_roleRepository = roleRepository;
 			_mapper = mapper;
-		}
-
-		public async Task<GetLandLordDetailsReturnDTO> GetLandLordDetails(int id)
-		{
-			var user = await _userRepository.GetLandLordDetailsAsync(x => x.UserID == id);
-
-			return _mapper.Map<GetLandLordDetailsReturnDTO>(user);
+			_httpContextAccessor = httpContextAccessor;
 		}
 
 		public async Task<StaffReturnDTO> CreateStaff(CreateStaffDTO dto)
